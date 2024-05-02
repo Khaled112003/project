@@ -1,5 +1,5 @@
-import 'package:auth/controler/cubits/onbordingcontrolstate.dart';
-import 'package:auth/controler/cubits/onbordingcubit.dart';
+import 'package:auth/controler/onboardingcubit/onbordingcontrolstate.dart';
+import 'package:auth/controler/onboardingcubit/onbordingcubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

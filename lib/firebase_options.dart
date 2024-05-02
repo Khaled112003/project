@@ -44,38 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyC4yMbEMJy_Vf5mHBnXrVVYXUohUZfSzVg',
-    appId: '1:126648573361:web:f90e74a3aa917d4f223190',
-    messagingSenderId: '126648573361',
-    projectId: 'auth-news-43598',
-    authDomain: 'auth-news-43598.firebaseapp.com',
-    storageBucket: 'auth-news-43598.appspot.com',
-    measurementId: 'G-6XGWQSNHQG',
+    apiKey: 'AIzaSyClbCzZCKFPSbs3CFBUiEz8DBlfIMjcFvc',
+    appId: '1:133060069069:web:a52c38faa47d2befb24b84',
+    messagingSenderId: '133060069069',
+    projectId: 'dashboard2-a3fdd',
+    authDomain: 'dashboard2-a3fdd.firebaseapp.com',
+    storageBucket: 'dashboard2-a3fdd.appspot.com',
+    measurementId: 'G-4THQG6J01C',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCq6eJ4l9M1aZBuWX-gEOduQXOukQ60YpM',
-    appId: '1:126648573361:android:9863c43d99310162223190',
-    messagingSenderId: '126648573361',
-    projectId: 'auth-news-43598',
-    storageBucket: 'auth-news-43598.appspot.com',
+    apiKey: 'AIzaSyAdTfNjHNVSIMdXU1d-ul9f1sYghOXSpE4',
+    appId: '1:133060069069:android:502b98d8f459011fb24b84',
+    messagingSenderId: '133060069069',
+    projectId: 'dashboard2-a3fdd',
+    storageBucket: 'dashboard2-a3fdd.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCjcaUGlUKd00YJxUXbYwS_3PTzvLHsGoA',
-    appId: '1:126648573361:ios:14aa2da0d3a91dde223190',
-    messagingSenderId: '126648573361',
-    projectId: 'auth-news-43598',
-    storageBucket: 'auth-news-43598.appspot.com',
-    iosBundleId: 'com.example.flutterApplication1',
+    apiKey: 'AIzaSyD5cGx8wPG36xX8aOwMjvL_qX0PdBZ9moU',
+    appId: '1:133060069069:ios:2b3e31b6c1560a49b24b84',
+    messagingSenderId: '133060069069',
+    projectId: 'dashboard2-a3fdd',
+    storageBucket: 'dashboard2-a3fdd.appspot.com',
+    iosBundleId: 'com.example.auth',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCjcaUGlUKd00YJxUXbYwS_3PTzvLHsGoA',
-    appId: '1:126648573361:ios:5ae05e447bb17b76223190',
-    messagingSenderId: '126648573361',
-    projectId: 'auth-news-43598',
-    storageBucket: 'auth-news-43598.appspot.com',
-    iosBundleId: 'com.example.flutterApplication1.RunnerTests',
+    apiKey: 'AIzaSyD5cGx8wPG36xX8aOwMjvL_qX0PdBZ9moU',
+    appId: '1:133060069069:ios:6a0cecec41ed58d9b24b84',
+    messagingSenderId: '133060069069',
+    projectId: 'dashboard2-a3fdd',
+    storageBucket: 'dashboard2-a3fdd.appspot.com',
+    iosBundleId: 'com.example.auth.RunnerTests',
   );
 }

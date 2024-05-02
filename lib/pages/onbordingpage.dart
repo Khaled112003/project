@@ -1,7 +1,7 @@
 import 'package:auth/body/onbording_body.dart';
 import 'package:auth/body/onbordingbuttonswid.dart';
-import 'package:auth/controler/cubits/onbordingcontrolstate.dart';
-import 'package:auth/controler/cubits/onbordingcubit.dart';
+import 'package:auth/controler/onboardingcubit/onbordingcontrolstate.dart';
+import 'package:auth/controler/onboardingcubit/onbordingcubit.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
