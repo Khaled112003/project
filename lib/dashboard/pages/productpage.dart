@@ -18,24 +18,17 @@ class product_page extends StatelessWidget {
           return Scaffold(
             body: 
             state is UserLoading
-                ? GridView.builder(clipBehavior: Clip.none,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 1.4,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 40,
-                    ),
-                    itemCount:controler.product_list.length , itemBuilder: (_, int index) {
-                          return customcard(productModel: controler.product_list[index],);
-                        }) 
+                ? const CircularProgressIndicator()
                 : state is UserEmpty
                     ? const Center(
                         child: Icon(
                         CupertinoIcons.delete,
                         size: 100,
                         color: Colors.grey,
-                      ))
+                        
+                      )
+                       )
+                      
                     :
                     GridView.builder(clipBehavior: Clip.none,
                     gridDelegate:
@@ -46,8 +39,11 @@ class product_page extends StatelessWidget {
                       mainAxisSpacing: 40,
                     ),
                     itemCount:controler.product_list.length , itemBuilder: (_, int index) {
-                          return customcard(productModel: controler.product_list[index],);
+                     
+                           customcard(productModel: controler.product_list[index],);
+                             
                         }) ,
+                         
           
               );
         },
