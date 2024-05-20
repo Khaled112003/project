@@ -2,13 +2,11 @@ import 'package:auth/body/onbording_body.dart';
 import 'package:auth/body/onbordingbuttonswid.dart';
 import 'package:auth/controler/onboardingcubit/onbordingcontrolstate.dart';
 import 'package:auth/controler/onboardingcubit/onbordingcubit.dart';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class onbordingpage extends StatelessWidget {
-  onbordingpage({super.key});
+class OnbordingPage extends StatelessWidget {
+  OnbordingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +18,29 @@ class onbordingpage extends StatelessWidget {
               context.read<onbordingcontrol_cubit>();
 
           return Scaffold(
-            body: onbordingbody(controler: controler),
-            bottomNavigationBar: onbordingbuttonswidget(controler: controler,),
+            body: Stack(
+              fit: StackFit.expand,
+              children: [
+                
+                Column(
+                  children: [
+                    Expanded(
+                      child: OnbordingBody(controler: controler),
+                    ),
+                   
+                  ],
+                  
+                ),
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: onbordingbuttonswidget(controler: controler),)
+              ],
+            ),
           );
         },
       ),
     );
   }
 }
-
-

@@ -3,7 +3,7 @@ import 'package:auth/dashboard/models/product_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart';
 class DatabaseRepo {
-   late Database myObjectDB;
+  late Database myObjectDB;
   Future<void> initDB() async {
     myObjectDB = await openDatabase(
       (await getDatabasesPath()) + '/productDB.db',

@@ -3,60 +3,67 @@ import 'package:auth/controler/onboardingcubit/onbordingcubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class onbordingbody extends StatelessWidget {
-   onbordingbody({required this.controler,
+class OnbordingBody extends StatelessWidget {
+  OnbordingBody({
+    required this.controler,
     super.key,
   });
-  onbordingcontrol_cubit controler;
-
+  final onbordingcontrol_cubit controler;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: 150,
-        ),
-        Expanded(
-          child: BlocProvider<onbordingcontrol_cubit>.value(
-            value: controler,
-            child: BlocBuilder<onbordingcontrol_cubit, onbordingstate>(
-              builder: (context, state) {
-                onbordingcontrol_cubit controler =
-                    context.read<onbordingcontrol_cubit>();
-    
-                return PageView(controller:controler.PageControler ,
-                  
-                  children: List.generate(controler.data.length, ((index) {
-                    return Column(
-                      children: [
-                        
-                        
-                        Image.network(
-                          controler.data[index].image,
-                          
-                          width: 250,
-                          height: 200,
-                        ),
+    return BlocProvider<onbordingcontrol_cubit>.value(
+      value: controler,
+      child: BlocBuilder<onbordingcontrol_cubit, onbordingstate>(
+        builder: (context, state) {
+          return PageView(
+            controller: controler.PageControler,
+            children: List.generate(controler.data.length, (index) {
+              return Stack(
+                children: [
+                  Image.network(
+                    controler.data[index].image,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
+                  Positioned(
+                    top: 80, // Adjust to position text above bottomNavigationBar
+                    left: 20,
+                    right: 20,
+                    child: Column(
+                     children: [
+                      
                         Text(
-                          controler.data[index].text,
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                          controler.data[index].txt,
+                          style:const TextStyle(
+                            fontSize: 35,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            // backgroundColor: Colors.black54,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
+                        SizedBox(height: 10),
                         Text(
-                          controler.data[index].club,
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        )
+                          controler.data[index].txt2,
+                          style:const TextStyle(
+                            fontSize: 50,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 236, 11, 11),
+                            // backgroundColor: Colors.black54,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
                       ],
-                    );
-                  })),
-                );
-              },
-            ),
-          ),
-        )
-      ],
+                    ),
+                  ),
+                ],
+              );
+            }),
+          );
+        },
+      ),
     );
   }
 }

@@ -29,7 +29,10 @@ class onbordingbuttonswidget extends StatelessWidget {
                       ElevatedButton(onPressed: () {
                         controler.skip(context);
                       }, child: Text("skip")),
-                      ElevatedButton(onPressed: controler.next, child: Text("continue"))
+                      ElevatedButton(onPressed: () {
+                      controler.next(context);
+                    },
+                    child: Text("Continue"),)
                     ],
                   ),
                 ));

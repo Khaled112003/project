@@ -1,5 +1,6 @@
-import 'package:auth/dashboard/view/dashboard_page.dart';
+
 import 'package:auth/firebase_options.dart';
+import 'package:auth/pages/onbordingpage.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:dashboard_page()
+      home:OnbordingPage()
       // onbording?Signin():onbordingpage(),
     );
   }

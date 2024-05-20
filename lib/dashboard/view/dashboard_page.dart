@@ -17,14 +17,21 @@ class dashboard_page extends StatelessWidget {
 
           return Scaffold(
             appBar: AppBar(
-              title: Text(title[control.count]),
+              title: Text(title[control.count] ,style: Theme.of(context).textTheme.displayLarge
+              ),
             ),
+            
             body: PageView(
               controller: control.pagecontrol,
               onPageChanged: control.onchange,
               children: [
-                product_page()
-                , Text("fav"), Text("cart")],
+                ProductPage() ,
+                Text("fav" ,
+                style:Theme.of(context).textTheme.bodyLarge,
+                ), Text("cart" ,
+                style:Theme.of(context).textTheme.bodyLarge
+                ) , 
+                ],
             ),
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: control.count,
