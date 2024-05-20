@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class dashboard_page extends StatelessWidget {
  const dashboard_page({super.key});
- final List title = const["products", 'fav', 'cart'];
+ final List title = const["products", 'fav ', 'cart'];
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
