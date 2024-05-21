@@ -1,5 +1,5 @@
 import 'package:auth/dashboard/models/product_model.dart';
-import 'package:auth/dashboard/repos/firbase_repo.dart';
+// import 'package:auth/dashboard/repos/firbase_repo.dart';
 import 'package:auth/dashboard/repos/localdb.dart';
 
 import 'package:bloc/bloc.dart';
@@ -9,29 +9,36 @@ import 'package:meta/meta.dart';
 part 'product_state.dart';
 
 class ProductCubit extends Cubit<ProductState> {
-  ProductCubit() : super(UserLoading()){
-    apper();
-  }
-  List<ProductModel> productList = [];
-   DatabaseRepo repo = DatabaseRepo();
+  static ProductCubit instance = ProductCubit();
+ 
 
-  Future<void> apper() async {
-    emit(UserLoading());
-
-    try {
-      await repo.initDB();
-  // productList = await firebase_repo.instance.fetch();
-  repo.insertProduct('name', 'desc', 1, 5,Uint8List(10));
-   productList = await repo.fetchProducts();
-   
-   
-  if (productList.isEmpty) {
-    emit(UserEmpty());
-  } else {
-    emit(UserLoaded(productList));
+  ProductCubit() : super(ProductStateLoading()) {
+    fetchProducts();
   }
-}   catch (e) {
-  emit(UserError(e.toString()));
-}
+ 
+ List<ProductModel> product = [];
+
+  DatabaseRepo repo = DatabaseRepo();
+  Future<void> fetchProducts() async {
+    emit(ProductStateLoading());
+    await repo.initDB();
+    // repo.insertProduct("55555", 'yiguy', 2, 4, Uint8List(10));
+
+    product= await repo.fetchProducts();
+    if (product.isEmpty) {
+      emit(ProductStateEmpty());
+    } else {
+      emit(ProductStateLoaded());
+    }
+  }
+
+  void addItemToFavorite(int id, int value) {
+    repo.updateFavorite(value, id);
+    fetchProducts ();
+    emit(ProductStateLoaded());
+  }
+  void addItemToCart(int id) {
+    repo.updateCart(1, id);
+    emit(ProductStateLoaded());
   }
 }

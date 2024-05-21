@@ -1,10 +1,15 @@
 
+import 'package:auth/dashboard/view/dashboard_page.dart';
 import 'package:auth/firebase_options.dart';
 import 'package:auth/pages/onbordingpage.dart';
+import 'package:auth/pages/signin.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'dashboard/newproduct.dart/view/NewproductPage.dart';
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +29,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:OnbordingPage()
+      routes: {
+      'OnbordingPage':(context)=>(OnbordingPage()),
+      'Signin':(context) => (Signin()),
+      'NewproductPage':(context) => (NewproductPage()),
+      'DashboardPage':(context)=>(DashboardPage()),
+      
+    },
+      initialRoute: 'DashboardPage'
       // onbording?Signin():onbordingpage(),
     );
   }

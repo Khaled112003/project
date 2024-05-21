@@ -1,16 +1,20 @@
+import 'dart:developer';
+import 'dart:typed_data';
 
 class ProductModel {
-  final String title;
-  final String desc;
-  final String id;
+  String? name, desc;
+  int? favorite, cart, id, availableQuantity, quantity;
+  Uint8List? image;
 
-  ProductModel({required this.title, required this.desc, required this.id});
-
-  factory ProductModel.fromJson(Map<String,dynamic> json, [String? id]) {
-    return ProductModel(
-      title: json['title'] ?? "XX",
-      desc: json['desc'] ?? "XXXX",
-      id: json['id'],
-    );
+  ProductModel.fromJson(Map m) {
+    log(m.toString());
+    name = m['name'];
+    desc = m['description'];
+    image = m['image'];
+    quantity = m['quantity'];
+    availableQuantity = m['availableQuantity'];
+    cart = m['cart'];
+    favorite = m['favorite'];
+    id = m['id'];
   }
 }

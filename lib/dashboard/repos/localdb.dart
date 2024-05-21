@@ -6,7 +6,7 @@ class DatabaseRepo {
   late Database myObjectDB;
   Future<void> initDB() async {
     myObjectDB = await openDatabase(
-      (await getDatabasesPath()) + '/productDB.db',
+      (await getDatabasesPath()) + '/productdbdb.db',
       version: 1,
       onCreate: (db, version) async {
         await db.execute('''
@@ -30,7 +30,8 @@ CREATE TABLE product (
   }
 
 
-  Future<void> insertProduct(String name, String desc, int quantity, int availableQuantity, Uint8List image) async {
+  Future<void> insertProduct(String name, String desc, int quantity, int availableQuantity, Uint8List image)
+   async {
     await myObjectDB.insert('product', {
       'name': name,
       'description': desc,
@@ -41,5 +42,33 @@ CREATE TABLE product (
       'cart': 0,
     });
   }
-  
+  Future<List<ProductModel>> fetchFavoriteProducts() async {
+    return (await myObjectDB.query('product', where: 'favorite=?', whereArgs: [1]))
+        .map((e) => ProductModel.fromJson(e))
+        .toList();
+  }
+  Future<List<ProductModel>> fetchCartProducts() async {
+    return (await myObjectDB.query('product', where: 'cart=?', whereArgs: [1]))
+        .map((e) => ProductModel.fromJson(e))
+        .toList();
+  }
+  void updateCart(int value, int id) {
+    myObjectDB.update(
+        'product',
+        {
+          'cart': value,
+        },
+        where: 'id=?',
+        whereArgs: [id]);
+  }
+
+  Future<void> updateFavorite(int value, int id) async {
+    await myObjectDB.update(
+        'product',
+        {
+          'favorite': value,
+        },
+        where: 'id=?',
+        whereArgs: [id]);
+  }
   }

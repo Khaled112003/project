@@ -4,48 +4,43 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:auth/dashboard/widgets/card_widget.dart';
-import 'package:auth/dashboard/models/product_model.dart';
 class ProductPage extends StatelessWidget {
   const ProductPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ProductCubit()..apper(), // Ensure fetch is called on creation
+    return BlocProvider.value(
+      value: ProductCubit.instance,
       child: BlocBuilder<ProductCubit, ProductState>(
         builder: (context, state) {
-          if (state is UserLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is UserEmpty) {
-            return const Center(
-              child: Icon(
-                CupertinoIcons.delete,
-                size: 100,
-                color: Colors.grey,
-              ),
-            );
-          } else if (state is UserLoaded) {
-            return GridView.builder(
+          final ProductCubit controller = context.read<ProductCubit>();
+          return Scaffold(
+            body: state is ProductStateLoading
+                ? const CircularProgressIndicator()
+                : state is ProductStateEmpty
+                    ? const Center(
+                        child: Icon(
+                          CupertinoIcons.delete,
+                          size: 100,
+                          color: Colors.blue,
+                        ),
+                      )
+                    : GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 childAspectRatio: 1.4,
-                crossAxisSpacing: 20,
-                mainAxisSpacing: 40,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 20,
               ),
-              itemCount: state.products.length,
+              itemCount: controller.product.length,
               itemBuilder: (_, int index) {
-                return customcard(productModel: state.products[index]);
+                return customcard(productModel: controller.product[index], controller: controller,);
               },
-            );
-          } else if (state is UserError) {
-            return Center(
-              child: Text('Error: ${state.message}'),
-            );
-          } else {
-            return const Center(child: Text('Unknown state'));
-          }
+            )
+          );
         },
       ),
     );
   }
 }
+
