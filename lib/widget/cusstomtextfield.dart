@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -10,13 +12,16 @@ class customtextfiald extends StatelessWidget {
       this.obscureText = false,
        this.validator,
       this.icon,
-      this.Controller
+      this.Controller,
+      this.keyboardType
        });
   final String hintText;
   Function(String)? onChanged;
   dynamic validator;
   bool? obscureText;
   Icon? icon;
+  dynamic keyboardType;
+  
    TextEditingController? Controller=TextEditingController();
 
 
@@ -24,6 +29,7 @@ class customtextfiald extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: Controller,
+      keyboardType:keyboardType,
       obscureText: obscureText!,
       validator: validator,
       onChanged: onChanged,

@@ -1,15 +1,21 @@
+import 'dart:developer';
+
 import 'package:auth/dashboard/models/product_model.dart';
+import 'package:auth/dashboard/product_control/product_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 //    ده يا احمد شكل ال card اللي هيتعرض
 
 class customcard extends StatelessWidget {
-  customcard({required ProductModel productModel});
+  customcard({required this.productModel, required this.controller});
+  final ProductModel productModel;
+  final ProductCubit controller;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
-      clipBehavior: Clip.none,
+      // clipBehavior: Clip.none,
       children: [
         Container(
           decoration: BoxDecoration(boxShadow: [
@@ -25,11 +31,35 @@ class customcard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
-                    'product',
-                    style: const TextStyle(
-                      color: Colors.grey,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        productModel.name!,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      InkWell(
+                          onTap: () {
+                            if (productModel.favorite == 1) {
+                              controller.addItemToFavorite(
+                                  productModel.id ?? 0, 0);
+                            } else {
+                              controller.addItemToFavorite(
+                                  productModel.id ?? 0, 1);
+                            }
+                          },
+                          child: productModel.favorite == 1
+                              ? const Icon(
+                                  CupertinoIcons.heart_fill,
+                                  color: Color.fromARGB(255, 239, 29, 9),
+                                )
+                              : const Icon(
+                                  CupertinoIcons.heart,
+                                  color: Color.fromARGB(255, 239, 29, 9),
+                                )),
+                    ],
                   ),
                   const SizedBox(
                     height: 5,
@@ -37,22 +67,31 @@ class customcard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("12",
+                      Text(productModel.desc!,
                           style: const TextStyle(
                               color: Colors.black, fontSize: 20)),
-                      const Icon(
-                        Icons.favorite,
-                        color: Colors.red,
-                      )
+                               InkWell(onTap: () {
+                                 
+                               },
+                                 child: productModel.favorite == 1
+                                                               ? const Icon(
+                                    CupertinoIcons.cart,
+                                    color: Color.fromARGB(255, 20, 160, 254),
+                                  )
+                                                               : const Icon(
+                                    CupertinoIcons.cart,
+                                    color: Color.fromARGB(255, 10, 147, 216),
+                                  ),
+                               )
+                     
                     ],
-                  )
+                  ),
                 ]),
           ),
         ),
-        // لو عملت الصوره اللغي comment
 
         // Positioned(bottom:70 ,left: 40,
-        //    child: Image.network(product.image,width: 150,height: 80,))
+        //    child: Image.network(productModel.image! as String,width: 150,height: 80,))
       ],
     );
   }
